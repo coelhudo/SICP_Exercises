@@ -14,7 +14,7 @@
 
 (define (simpson-iter f a max h-result count)
   (cond ((= count max) (y-function f a count h-result))
-  ((= count 0) (simpson-func 1 f a max count h-result))
+        ((= count 0) (simpson-func 1 f a max count h-result))
 	((even? count) (simpson-func 2 f a max  count h-result))
 	(else (simpson-func 4 f a max count h-result))))
 
