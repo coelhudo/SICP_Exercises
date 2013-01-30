@@ -5,8 +5,8 @@
   (let ((fk (f-n count))
         (dk (f-d count)))
     (if (= count k)
-	      (/ fk dk)
-	      (/ fk (+ dk (cont-frac-iter f-n f-d k (+ count 1)))))))
+	(/ fk dk)
+	(/ fk (+ dk (cont-frac-iter f-n f-d k (+ count 1)))))))
 
 ;; output to find approximation with 4 decimal places
 (define (loop)
