@@ -8,8 +8,8 @@
   (let ((nk (f-n count))
        (dk (f-d count)))
     (if (= count k)
-	      result
-	      (cont-frac-iter f-n f-d (/ nk (+ dk result)) k (inc count)))))
+	result
+	(cont-frac-iter f-n f-d (/ nk (+ dk result)) k (inc count)))))
 
 (define (loop)
   (define (loop-iter count max)
