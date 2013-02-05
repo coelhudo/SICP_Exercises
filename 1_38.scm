@@ -12,10 +12,10 @@
 	(cont-frac-iter f-n f-d (/ nk (+ dk result)) k (inc count)))))
 
 (define (euler-approx k)
-  (/ 1 (cont-frac (lambda (i) 1.)
+  (/ 1 (+ 1 (cont-frac (lambda (i) 1.)
 		  (lambda (i) (if (not (= (remainder i 3) 0))
 				  1
-				  (+ (* 2 (/ i 3)) 2))) k)))
+				  (+ (* 2 (/ i 3)) 2))) k))))
 
 (euler-approx 100)
 
