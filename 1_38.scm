@@ -1,48 +1,17 @@
 (define (cont-frac f-n f-d k)
-  (cont-frac-iter f-n f-d 1 k 0))
+  (cont-frac-iter f-n f-d k 0))
 
-(define (inc x)
-  (+ x 1))
-
-(define (cont-frac-iter f-n f-d result k count)
-  (let ((nk (f-n count))
-	(dk (f-d count)))
+(define (cont-frac-iter f-n f-d k count)
+  (let ((fk (f-n count))
+        (dk (f-d count)))
     (if (= count k)
-	result
-	(cont-frac-iter f-n f-d (/ nk (+ dk result)) k (inc count)))))
+	(/ fk dk)
+	(/ fk (+ dk (cont-frac-iter f-n f-d k (+ count 1)))))))
 
 (define (euler-approx k)
-  (/ 1 (+ 1 (cont-frac (lambda (i) 1.)
-		  (lambda (i) (if (not (= (remainder i 3) 0))
-				  1
-				  (+ (* 2 (/ i 3)) 2))) k))))
+  (+ 2 (/ 1 (+ 1 (cont-frac (lambda (i) 1.)
+			    (lambda (i) (if (not (= (remainder i 3) 0))
+					    1
+					    (+ (* 2 (/ i 3)) 2))) k)))))
 
 (euler-approx 100)
-
-(define (loop)
-  (define (loop-iter count max)
-    (newline)
-    (display (cont-frac (lambda (i) 1.)
-			(lambda (i) (if (not (= (remainder i 3) 0))
-					1
-					(+ (* 2 (/ i 3)) 2)))
-			count))
-    (if (not (= count max))
-	(loop-iter (+ count 1) max)))
-  (loop-iter 0 100))
-
-(loop)
-
-(define (loop)
-  (define (loop-iter count max)
-    (newline)
-    (display count)
-    (display " ")
-    (display ((lambda (i) (if (not (= (remainder i 3) 0))
-			      1
-			      (+ (* 2 (/ i 3)) 2))) count))
-    (if (not (= count max))
-	(loop-iter (+ count 1) max)))
-  (loop-iter 0 100))
-
-(loop)
