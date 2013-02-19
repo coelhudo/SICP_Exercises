@@ -14,7 +14,7 @@
   (display " )")
   (let ((nk (f-n iterations))
 	(dk (f-d iterations)))
-    (if (= iterations limit)
+    (if (= (inc iterations) limit)
 	result
 	(cont-frac-iter f-n f-d (/ nk (+ dk result)) (- iterations 1) limit))))
 
