@@ -20,44 +20,23 @@
 	  (try next))))
   (try first-guess))
 
-(define (square-root x)
-  (fixed-point (average-damp (lambda (y) (/ x y))) 1.0))
-
-(define (cube-root x)
-  (fixed-point (average-damp (lambda (y) (/ x (* y y)))) 1.0))
-
-(define (fourth-root x)
-  (fixed-point (average-damp (average-damp (lambda (y) (/ x (* y y y))))) 1.0))
-
-(define (fifth-root x)
-  (fixed-point (average-damp (average-damp (lambda (y) (/ x (* y y y y))))) 1.0))
-
-(define (sixth-root x)
-  (fixed-point (average-damp (average-damp (lambda (y) (/ x (* y y y y y))))) 1.0))
-
-(define (seventh-root x)
-  (fixed-point (average-damp (average-damp (lambda (y) (/ x (* y y y y y y))))) 1.0))
-
 (define (pow x n)
-  (* x (if (< n 3)
-	   x
-	   (pow x (- n 1)))))
+  (if (= n 0) 
+      1
+      (* x (if (= n 1)
+	       1
+	       (pow x (- n 1))))))
+  
+(pow 2 0)
 
 (define (n-root x n)
   (if (< n 4)
       (fixed-point (average-damp (lambda (y) (/ x (pow y (- n 1))))) 1.0)
-      (fixed-point (average-damp (average-damp (lambda (y) (/ x (pow y (- n 1))))) 1.0))))
+      (fixed-point (average-damp (average-damp (lambda (y) (/ x (pow y (- n 1)))))) 1.0)))
 
-(square-root 4)
-(cube-root 8)
-(fourth-root 16)
-(fifth-root 32)
-(sixth-root 64)
-(seventh-root 128)
-
-(n-root 4 2)
-(n-root 8 3)
-(n-root 16 4)
-(n-root 32 5)
-(n-root 64 6)
-(n-root 128 7)
+(display (n-root 4 2)); 2.0000000929222947
+(display (n-root 8 3)); 2.000003635062117
+(display (n-root 16 4)); 2.000001711389449
+(display (n-root 32 5)); 1.9999939482000788
+(display (n-root 64 6)); 1.9999941331966569
+(display (n-root 128 7)); 1.9999952615954668
