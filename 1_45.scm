@@ -26,8 +26,6 @@
       (* x (if (= n 1)
 	       1
 	       (pow x (- n 1))))))
-  
-(pow 2 0)
 
 (define (n-root x n)
   (if (< n 4)
