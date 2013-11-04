@@ -10,15 +10,10 @@
   (* (expt 2 a) (expt 3 b)))
 
 (define (car z)
-  (if (= z 1)
-      0
-      (logb (find-value z 3) 2)
-      ))
+  (logb (find-value z 3) 2))
 
 (define (cdr z)
-  (if (= z 1) 0
-      (logb (find-value z 2) 3)
-      ))
+  (logb (find-value z 2) 3))
 
 (car (cons 0 0)) ;0
 (car (cons 0 1)) ;0
