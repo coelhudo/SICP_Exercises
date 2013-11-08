@@ -41,3 +41,12 @@
 
 (upper-bound (div-interval (make-interval 4 21)
 			   (make-interval 4 8))) ; 21/4
+
+; ----------- Exercise 2.8 ------------
+
+(define (sub-interval a b)
+  (make-interval (- (lower-bound a) (upper-bound b))
+		 (- (upper-bound a) (lower-bound b))))
+
+(sub-interval (make-interval 7.2 8.8)
+	      (make-interval 5.4 6.6)); 0.6, 3.4
